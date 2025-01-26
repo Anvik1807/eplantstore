@@ -27,9 +27,23 @@ export const CartSlice = createSlice({
 
     
     },
+    incrementQuantity: (state, action) => {
+        const {name, quantity} = action.payload;
+        const itemToUpdate = state.items.find(item => item.name === name);
+        if(itemToUpdate){
+            itemToUpdate.quantity++;
+        }
+    },
+    decrementQuantity: (state, action) => {
+        const {name, quantity} = action.payload;
+        const itemToUpdate = state.items.find(item => item.name === name);
+        if(itemToUpdate && itemToUpdate.quantity > 1){
+            itemToUpdate.quantity--;
+        }
+    },
   },
 });
 
-export const { addItem, removeItem, updateQuantity } = CartSlice.actions;
+export const { addItem, removeItem, updateQuantity,incrementQuantity,decrementQuantity } = CartSlice.actions;
 
 export default CartSlice.reducer;
