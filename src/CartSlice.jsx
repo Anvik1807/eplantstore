@@ -41,9 +41,16 @@ export const CartSlice = createSlice({
             itemToUpdate.quantity--;
         }
     },
+    totalCartQty: (state) => {
+        let totalQty = 0;
+        console.log(state.items);
+        state.items.foreach((item) => {
+            totalQty += item.quantity;
+        });
+    } 
   },
 });
 
-export const { addItem, removeItem, updateQuantity,incrementQuantity,decrementQuantity } = CartSlice.actions;
+export const { addItem, removeItem, updateQuantity,incrementQuantity,decrementQuantity,totalCartQty } = CartSlice.actions;
 
 export default CartSlice.reducer;
